@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 /**
  * Created by eduardorobles on 5/12/17.
@@ -11,10 +12,12 @@ public class Server
     private int port;
     private ServerSocket serverSocket;
     private Socket clientSocket;
+    private ArrayList<ClientHandler>ClientHandlers;
 
     public Server(int port)
     {
         this.port = port;
+        this.ClientHandlers = new ArrayList<>();
     }
 
     public void run()
@@ -24,6 +27,7 @@ public class Server
             //create the server socket
             serverSocket = new ServerSocket(this.port);
             System.out.println("Server Started....");
+
             //keep looping forever to receive connections
             while(true)
             {
@@ -32,6 +36,9 @@ public class Server
                 System.out.println("Connection accepted from: "+clientSocket);
 
                 //create a new thread to handle that client
+                ClientHandler newClient = new ClientHandler(this,clientSocket);
+                ClientHandlers.add(newClient);
+                newClient.start();
             }
         }
         catch(IOException e)

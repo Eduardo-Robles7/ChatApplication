@@ -136,7 +136,6 @@ class AccountManager
     public static void main(String [] args)
     {
         AccountManager Mananger = new AccountManager();
-        Mananger.addNewUser("Zlatanboy21","23fsdf");
         Mananger.display_users();
     }
 }
