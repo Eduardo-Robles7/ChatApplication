@@ -11,7 +11,7 @@ import java.net.Socket;
 /**
  * Created by eduardorobles on 5/13/17.
  */
-public class ClientChatWindow extends JFrame
+public class ClientChatWindow extends JFrame implements Runnable
 {
     private String hostName;
     private int port;
@@ -30,11 +30,11 @@ public class ClientChatWindow extends JFrame
     private JButton exitButton;
     private JButton recordsButton;
 
-    public ClientChatWindow(String hostName,int port)
+    public ClientChatWindow(String username,String hostName,int port)
     {
         this.hostName = hostName;
         this.port = port;
-        this.userName = "Pablo";
+        this.userName = username;
     }
 
     private void create_GUI()
@@ -65,7 +65,9 @@ public class ClientChatWindow extends JFrame
         southPanel.add(userInput,BorderLayout.CENTER);
         JPanel buttonPanel = new JPanel();
         southPanel.add(buttonPanel,BorderLayout.EAST);
-        buttonPanel.add(recordsButton,BorderLayout.WEST);
+        JButton clearButton = new JButton("Clear");
+        buttonPanel.add(clearButton,BorderLayout.WEST);
+        buttonPanel.add(recordsButton,BorderLayout.CENTER);
         buttonPanel.add(exitButton,BorderLayout.EAST);
 
         setTitle("Ping Chat");
@@ -107,11 +109,9 @@ public class ClientChatWindow extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                //sendtoChatArea(userInput.getText());
-                writeToServer.println(userInput.getText());
-                //System.out.println(userInput.getText());
-                writeToServer.flush();
-                sendtoChatArea(userInput.getText());
+                String message = userName+":"+userInput.getText();
+                sendtoChatArea(message);
+                sendMessageToServer("msg:"+message);
             }
         });
 
@@ -124,12 +124,13 @@ public class ClientChatWindow extends JFrame
             {
                 while ((line = inputFromServer.readLine()) != null)
                 {
-                    System.out.println(line);
+                    //System.out.println(line);
                     sendtoChatArea(line);
                 }
             }
             catch(IOException e)
             {
+                e.printStackTrace();
             }
     }
 
@@ -137,18 +138,24 @@ public class ClientChatWindow extends JFrame
     {
         if (message != null)
         {
-            chatArea.append(userName+":"+message + "\n");
-            //writeToServer.println(message + "\n");
-            //writeToServer.flush();
-            userInput.setText(" ");
-
+            chatArea.append(message+"\n");
+            chatArea.setCaretPosition(chatArea.getDocument().getLength());
+            //userInput.setText("");
         }
     }
+
+    private void sendMessageToServer(String message)
+    {
+        writeToServer.println(message);
+        writeToServer.flush();
+        userInput.setText("");
+    }
+
     public static void main(String [] args)
     {
         String host = "localhost";
         int port = 4444;
-        ClientChatWindow chat = new ClientChatWindow(host,port);
+        ClientChatWindow chat = new ClientChatWindow("Pablo",host,port);
         chat.run();
     }
 }

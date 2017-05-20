@@ -20,6 +20,12 @@ public class Server
         this.ClientHandlers = new ArrayList<>();
     }
 
+    public ArrayList<ClientHandler> getClientHandlers()
+    {
+        return ClientHandlers;
+    }
+
+
     public void run()
     {
         try

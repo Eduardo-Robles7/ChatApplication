@@ -69,7 +69,9 @@ public class ClientDummy
         String host = "localhost";
         int port = 4444;
 
-        ClientDummy Client = new ClientDummy(host,port);
-        Client.run();
+        //ClientDummy Client = new ClientDummy(host,port);
+        //Client.run();
+        ClientChatWindow chat = new ClientChatWindow("Dummy",host,port);
+        chat.run();
     }
 }

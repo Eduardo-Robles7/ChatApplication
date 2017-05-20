@@ -4,6 +4,7 @@
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ClientHandler extends Thread
@@ -56,8 +57,16 @@ public class ClientHandler extends Thread
         {
             while ((line = inputFromtClient.readLine()) != null)
             {
-                writeToClient.println(line);
-                writeToClient.flush();
+                //writeToClient.println("Server:"+line);
+                //writeToClient.flush();
+                ArrayList<ClientHandler> clients = mainServer.getClientHandlers();
+                for(ClientHandler client: clients)
+                {
+                    if(client != this)
+                    {
+                        client.sendMessageToclient(line);
+                    }
+                }
             }
         }
 
@@ -66,9 +75,17 @@ public class ClientHandler extends Thread
             e.printStackTrace();
         }
 
+        System.out.println("Client has succesfully Disconnected");
+
     }
 
     private void listenToClient()
     {
+    }
+
+    private void sendMessageToclient(String message)
+    {
+        writeToClient.println(message);
+        writeToClient.flush();
     }
 }
