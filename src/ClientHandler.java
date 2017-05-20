@@ -13,6 +13,8 @@ public class ClientHandler extends Thread
     private PrintWriter writeToClient;
     private BufferedReader inputFromtClient;
     private Server mainServer;
+    String host = "localhost";
+    int port = 4444;
 
     public ClientHandler(Server mainServer,Socket clientSocket)
     {
@@ -48,7 +50,7 @@ public class ClientHandler extends Thread
     private void handleClientConnection()
     {
         //Write Welcome Message to Client
-        writeToClient.println("Welcome to the Chat");
+        writeToClient.println("Welcome to the Ping Chat");
         writeToClient.flush();
 
         String line;
@@ -57,8 +59,9 @@ public class ClientHandler extends Thread
         {
             while ((line = inputFromtClient.readLine()) != null)
             {
-                //writeToClient.println("Server:"+line);
-                //writeToClient.flush();
+
+
+                /*
                 ArrayList<ClientHandler> clients = mainServer.getClientHandlers();
                 for(ClientHandler client: clients)
                 {
@@ -67,6 +70,7 @@ public class ClientHandler extends Thread
                         client.sendMessageToclient(line);
                     }
                 }
+                */
             }
         }
 
@@ -79,8 +83,20 @@ public class ClientHandler extends Thread
 
     }
 
-    private void listenToClient()
+    private void handle_login(String [] data)
     {
+        if(mainServer.userAccounts.findAccount(data[1],data[2]))
+        {
+            User newUser = new User();
+            mainServer.userAccounts.copyAccount(data[1],newUser);
+            writeToClient.println("true");
+            ClientChatWindow chat = new ClientChatWindow(newUser,host,port);
+            chat.run();
+        }
+        else
+        {
+            writeToClient.println("false");
+        }
     }
 
     private void sendMessageToclient(String message)

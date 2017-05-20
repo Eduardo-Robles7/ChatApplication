@@ -10,6 +10,11 @@ public class User
     private String user_name;
     private String password;
 
+    public User()
+    {
+        this.user_name = null;
+        this.password = null;
+    }
     public User(String user_name, String password)
     {
         this.user_name = user_name;
@@ -22,7 +27,7 @@ public class User
         this.password = otherUser.password;
     }
 
-    public void Copy(User otherUser)
+    public void copy(User otherUser)
     {
         this.user_name = otherUser.user_name;
         this.password = otherUser.password;
@@ -47,6 +52,12 @@ public class User
     {
         this.password = password;
     }
+
+    public void display()
+    {
+        System.out.println(user_name+"|"+password);
+    }
+
 }
 
 class AccountManager
@@ -69,6 +80,21 @@ class AccountManager
         }
     }
 
+    public AccountManager(String file_name)
+    {
+        map = new HashMap<>();
+        try
+        {
+            loadFromFile(file_name);
+        }
+        catch(FileNotFoundException e )
+        {
+            e.printStackTrace();
+            System.out.println("Error Finding File");
+        }
+
+    }
+
     private void add(User newUser)
     {
         map.put(newUser.getUser_name(),newUser);
@@ -86,7 +112,28 @@ class AccountManager
         addUserToFile(newUser,file);
     }
 
+    public boolean findAccount(String user_name,String password)
+    {
+        if(map.containsKey(user_name))
+        {
+            if(password.equals(map.get(user_name).getPassword()))
+                return true;
+            else
+                return false;
+        }
+        return false;
+    }
 
+    public boolean copyAccount(String user_name,User newUser)
+    {
+        if(map.containsKey(user_name))
+        {
+            newUser.setUser_name(map.get(user_name).getUser_name());
+            newUser.setPassword(map.get(user_name).getPassword());
+            return true;
+        }
+        return false;
+    }
     private void loadFromFile(String file_name)throws FileNotFoundException
     {
         File file = new File(file_name);
@@ -136,6 +183,12 @@ class AccountManager
     public static void main(String [] args)
     {
         AccountManager Mananger = new AccountManager();
+
+        User newUser = new User();
+
+        Mananger.copyAccount("Robles5",newUser);
+
+        newUser.display();
         Mananger.display_users();
     }
 }

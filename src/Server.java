@@ -13,11 +13,13 @@ public class Server
     private ServerSocket serverSocket;
     private Socket clientSocket;
     private ArrayList<ClientHandler>ClientHandlers;
+    AccountManager userAccounts;
 
     public Server(int port)
     {
         this.port = port;
         this.ClientHandlers = new ArrayList<>();
+        this.userAccounts = new AccountManager();
     }
 
     public ArrayList<ClientHandler> getClientHandlers()

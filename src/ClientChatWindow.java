@@ -19,7 +19,7 @@ public class ClientChatWindow extends JFrame implements Runnable
     private PrintWriter writeToServer;
     private BufferedReader inputFromServer;
     private BufferedReader inputFromKeyBoard;
-    private String userName;
+    private User user;
 
     //GUI Components
     private JPanel mainPanel;
@@ -30,11 +30,11 @@ public class ClientChatWindow extends JFrame implements Runnable
     private JButton exitButton;
     private JButton recordsButton;
 
-    public ClientChatWindow(String username,String hostName,int port)
+    public ClientChatWindow(User user,String hostName,int port)
     {
         this.hostName = hostName;
         this.port = port;
-        this.userName = username;
+        this.user.copy(user);
     }
 
     private void create_GUI()
@@ -109,7 +109,7 @@ public class ClientChatWindow extends JFrame implements Runnable
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                String message = userName+":"+userInput.getText();
+                String message = user.getUser_name()+":"+userInput.getText();
                 sendtoChatArea(message);
                 sendMessageToServer("msg:"+message);
             }
@@ -155,7 +155,7 @@ public class ClientChatWindow extends JFrame implements Runnable
     {
         String host = "localhost";
         int port = 4444;
-        ClientChatWindow chat = new ClientChatWindow("Pablo",host,port);
-        chat.run();
+        //ClientChatWindow chat = new ClientChatWindow("Pablo",host,port);
+        //chat.run();
     }
 }
