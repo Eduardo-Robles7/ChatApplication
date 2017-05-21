@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="66a4a8b6-1141-4b4d-89ca-e6846a1df22a" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/LoginClient.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Ping/AccountManager.class" afterPath="$PROJECT_DIR$/out/production/Ping/AccountManager.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Ping/ClientChatWindow$1.class" afterPath="$PROJECT_DIR$/out/production/Ping/ClientChatWindow$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Ping/ClientChatWindow.class" afterPath="$PROJECT_DIR$/out/production/Ping/ClientChatWindow.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Ping/ClientDummy.class" afterPath="$PROJECT_DIR$/out/production/Ping/ClientDummy.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Ping/ClientHandler.class" afterPath="$PROJECT_DIR$/out/production/Ping/ClientHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Ping/Server.class" afterPath="$PROJECT_DIR$/out/production/Ping/Server.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Ping/User.class" afterPath="$PROJECT_DIR$/out/production/Ping/User.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ClientChatWindow.java" afterPath="$PROJECT_DIR$/src/ClientChatWindow.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ClientDummy.java" afterPath="$PROJECT_DIR$/src/ClientDummy.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ClientHandler.java" afterPath="$PROJECT_DIR$/src/ClientHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Server.java" afterPath="$PROJECT_DIR$/src/Server.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/User.java" afterPath="$PROJECT_DIR$/src/User.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,7 +41,7 @@
       <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
+            <state relative-caret-position="-14">
               <caret line="15" column="3" lean-forward="false" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -47,8 +55,8 @@
       <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="16" lean-forward="false" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
+            <state relative-caret-position="456">
+              <caret line="143" column="48" lean-forward="false" selection-start-line="143" selection-start-column="48" selection-end-line="143" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1060#1061#0" expanded="true" />
@@ -63,8 +71,8 @@
       <file leaf-file-name="ClientHandler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ClientHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+            <state relative-caret-position="21">
+              <caret line="108" column="38" lean-forward="false" selection-start-line="108" selection-start-column="38" selection-end-line="108" selection-end-column="38" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -73,11 +81,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientDummy.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ClientDummy.java">
+      <file leaf-file-name="LoginClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/LoginClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1042">
-              <caret line="73" column="60" lean-forward="false" selection-start-line="73" selection-start-column="60" selection-end-line="73" selection-end-column="60" />
+            <state relative-caret-position="261">
+              <caret line="137" column="22" lean-forward="true" selection-start-line="137" selection-start-column="22" selection-end-line="137" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -88,8 +96,8 @@
       <file leaf-file-name="ClientChatWindow.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ClientChatWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="613">
-              <caret line="156" column="23" lean-forward="false" selection-start-line="156" selection-start-column="23" selection-end-line="156" selection-end-column="23" />
+            <state relative-caret-position="1961">
+              <caret line="133" column="40" lean-forward="false" selection-start-line="133" selection-start-column="40" selection-end-line="133" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -120,10 +128,11 @@
         <option value="$PROJECT_DIR$/src/Account.java" />
         <option value="$PROJECT_DIR$/src/ServerHandler.java" />
         <option value="$PROJECT_DIR$/src/ChatClient.form" />
-        <option value="$PROJECT_DIR$/src/ClientDummy.java" />
         <option value="$PROJECT_DIR$/src/Server.java" />
         <option value="$PROJECT_DIR$/src/User.java" />
+        <option value="$PROJECT_DIR$/src/ClientDummy.java" />
         <option value="$PROJECT_DIR$/src/ClientChatWindow.java" />
+        <option value="$PROJECT_DIR$/src/LoginClient.java" />
         <option value="$PROJECT_DIR$/src/ClientHandler.java" />
       </list>
     </option>
@@ -135,8 +144,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="y" value="24" />
     <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="height" value="819" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -195,7 +205,6 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="257" />
-    <property name="FullScreen" value="true" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -209,7 +218,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.AccountManager">
+  <component name="RunManager" selected="Application.LoginClient">
     <configuration default="false" name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="Server" />
@@ -258,6 +267,21 @@
     <configuration default="false" name="ClientChatWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="ClientChatWindow" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Ping" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="LoginClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="LoginClient" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -657,18 +681,20 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
-    <list size="4">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.Server" />
       <item index="1" class="java.lang.String" itemvalue="Application.ClientDummy" />
       <item index="2" class="java.lang.String" itemvalue="Application.AccountManager" />
       <item index="3" class="java.lang.String" itemvalue="Application.ClientChatWindow" />
+      <item index="4" class="java.lang.String" itemvalue="Application.LoginClient" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Application.AccountManager" />
-        <item index="1" class="java.lang.String" itemvalue="Application.ClientChatWindow" />
-        <item index="2" class="java.lang.String" itemvalue="Application.ClientDummy" />
-        <item index="3" class="java.lang.String" itemvalue="Application.Server" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Application.LoginClient" />
+        <item index="1" class="java.lang.String" itemvalue="Application.Server" />
+        <item index="2" class="java.lang.String" itemvalue="Application.ClientChatWindow" />
+        <item index="3" class="java.lang.String" itemvalue="Application.ClientDummy" />
+        <item index="4" class="java.lang.String" itemvalue="Application.AccountManager" />
       </list>
     </recent_temporary>
   </component>
@@ -687,12 +713,12 @@
       <workItem from="1494729666029" duration="4633000" />
       <workItem from="1494953531484" duration="9044000" />
       <workItem from="1495001479969" duration="253000" />
-      <workItem from="1495236062160" duration="9749000" />
+      <workItem from="1495236062160" duration="23931000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30609000" />
+    <option name="totallyTimeSpent" value="44791000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -704,19 +730,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="24" width="1440" height="819" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32737276" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22289157" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26547456" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -728,7 +754,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45667124" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -745,7 +771,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="6" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
@@ -984,14 +1012,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Account.java" />
-    <entry file="file://$PROJECT_DIR$/src/ServerHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="8" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ChatClient.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
@@ -1004,9 +1024,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ServerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ClientDummy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1110">
+          <caret line="74" column="53" lean-forward="false" selection-start-line="74" selection-start-column="53" selection-end-line="74" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ClientChatWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1961">
+          <caret line="133" column="40" lean-forward="false" selection-start-line="133" selection-start-column="40" selection-end-line="133" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/src.zip!/java/io/BufferedReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="312" column="0" lean-forward="false" selection-start-line="312" selection-start-column="0" selection-end-line="312" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
+        <state relative-caret-position="-14">
           <caret line="15" column="3" lean-forward="false" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1018,8 +1074,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="16" lean-forward="false" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
+        <state relative-caret-position="456">
+          <caret line="143" column="48" lean-forward="false" selection-start-line="143" selection-start-column="48" selection-end-line="143" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1060#1061#0" expanded="true" />
@@ -1030,20 +1086,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ClientChatWindow.java">
+    <entry file="file://$PROJECT_DIR$/src/LoginClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="613">
-          <caret line="156" column="23" lean-forward="false" selection-start-line="156" selection-start-column="23" selection-end-line="156" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ClientDummy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1042">
-          <caret line="73" column="60" lean-forward="false" selection-start-line="73" selection-start-column="60" selection-end-line="73" selection-end-column="60" />
+        <state relative-caret-position="261">
+          <caret line="137" column="22" lean-forward="true" selection-start-line="137" selection-start-column="22" selection-end-line="137" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1052,8 +1098,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ClientHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+        <state relative-caret-position="21">
+          <caret line="108" column="38" lean-forward="false" selection-start-line="108" selection-start-column="38" selection-end-line="108" selection-end-column="38" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />

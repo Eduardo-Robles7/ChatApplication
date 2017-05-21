@@ -71,7 +71,8 @@ public class ClientDummy
 
         //ClientDummy Client = new ClientDummy(host,port);
         //Client.run();
-        ClientChatWindow chat = new ClientChatWindow("Dummy",host,port);
+        User a = new User("ZlatanFatboy","asd");
+        ClientChatWindow chat = new ClientChatWindow(a,host,port);
         chat.run();
     }
 }

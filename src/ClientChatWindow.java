@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Date;
 
 /**
  * Created by eduardorobles on 5/13/17.
@@ -20,6 +21,8 @@ public class ClientChatWindow extends JFrame implements Runnable
     private BufferedReader inputFromServer;
     private BufferedReader inputFromKeyBoard;
     private User user;
+    private Date currentDate;
+
 
     //GUI Components
     private JPanel mainPanel;
@@ -34,7 +37,9 @@ public class ClientChatWindow extends JFrame implements Runnable
     {
         this.hostName = hostName;
         this.port = port;
+        this.user = new User();
         this.user.copy(user);
+        this.currentDate = new Date();
     }
 
     private void create_GUI()
@@ -81,6 +86,7 @@ public class ClientChatWindow extends JFrame implements Runnable
 
     public void run()
     {
+        System.out.println(currentDate.toString());
         create_GUI();
         setup_streams();
         setup_buttons();
@@ -119,12 +125,12 @@ public class ClientChatWindow extends JFrame implements Runnable
 
     private void listenToServer()
     {
+        welcomeMessage();
            String line;
             try
             {
                 while ((line = inputFromServer.readLine()) != null)
                 {
-                    //System.out.println(line);
                     sendtoChatArea(line);
                 }
             }
@@ -140,7 +146,6 @@ public class ClientChatWindow extends JFrame implements Runnable
         {
             chatArea.append(message+"\n");
             chatArea.setCaretPosition(chatArea.getDocument().getLength());
-            //userInput.setText("");
         }
     }
 
@@ -151,11 +156,19 @@ public class ClientChatWindow extends JFrame implements Runnable
         userInput.setText("");
     }
 
+    private void welcomeMessage()
+    {
+       sendtoChatArea("Welcome To Ping Chat \n"+currentDate.toString());
+       sendtoChatArea(user.getUser_name()+" connected to Chat\n");
+    }
+
+
     public static void main(String [] args)
     {
         String host = "localhost";
         int port = 4444;
-        //ClientChatWindow chat = new ClientChatWindow("Pablo",host,port);
-        //chat.run();
+        User newUser = new User("Asds","Asdas");
+        ClientChatWindow chat = new ClientChatWindow(newUser,host,port);
+        chat.run();
     }
 }
