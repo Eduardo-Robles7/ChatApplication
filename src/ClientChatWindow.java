@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -32,6 +33,7 @@ public class ClientChatWindow extends JFrame implements Runnable
     private JButton sendButton;
     private JButton exitButton;
     private JButton recordsButton;
+    private JButton clearButton;
 
     public ClientChatWindow(User user,String hostName,int port)
     {
@@ -70,13 +72,14 @@ public class ClientChatWindow extends JFrame implements Runnable
         southPanel.add(userInput,BorderLayout.CENTER);
         JPanel buttonPanel = new JPanel();
         southPanel.add(buttonPanel,BorderLayout.EAST);
-        JButton clearButton = new JButton("Clear");
+        clearButton = new JButton("Clear");
         buttonPanel.add(clearButton,BorderLayout.WEST);
-        buttonPanel.add(recordsButton,BorderLayout.CENTER);
-        buttonPanel.add(exitButton,BorderLayout.EAST);
+        buttonPanel.add(recordsButton,BorderLayout.EAST);  //Had Center before changing
+       // buttonPanel.add(exitButton,BorderLayout.EAST);
 
         setTitle("Ping Chat");
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);    ////KEEEP THIS
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);   //This was added after
         setSize(700,500);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -86,10 +89,10 @@ public class ClientChatWindow extends JFrame implements Runnable
 
     public void run()
     {
-        System.out.println(currentDate.toString());
         create_GUI();
         setup_streams();
         setup_buttons();
+        setup_disconnect();
         listenToServer();
     }
 
@@ -112,7 +115,6 @@ public class ClientChatWindow extends JFrame implements Runnable
     {
         userInput.addActionListener(new ActionListener()
         {
-            @Override
             public void actionPerformed(ActionEvent e)
             {
                 String message = user.getUser_name()+":"+userInput.getText();
@@ -121,6 +123,26 @@ public class ClientChatWindow extends JFrame implements Runnable
             }
         });
 
+        clearButton.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                userInput.setText("");
+            }
+        });
+    }
+
+    private void setup_disconnect()
+    {
+        super.addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent)
+            {
+                    sendMessageToServer("disconnect:"+user.getUser_name());
+                    dispose();
+            }
+        });
     }
 
     private void listenToServer()
@@ -139,6 +161,7 @@ public class ClientChatWindow extends JFrame implements Runnable
                 e.printStackTrace();
             }
     }
+
 
     private void sendtoChatArea(String message)
     {
@@ -161,6 +184,7 @@ public class ClientChatWindow extends JFrame implements Runnable
        sendtoChatArea("Welcome To Ping Chat \n"+currentDate.toString());
        sendtoChatArea(user.getUser_name()+" connected to Chat\n");
     }
+
 
 
     public static void main(String [] args)

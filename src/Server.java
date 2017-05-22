@@ -11,7 +11,7 @@ public class Server
     //port number and list of Client Handlers
     private int port;
     private ServerSocket serverSocket;
-    private Socket clientSocket;
+    //private Socket clientSocket;
     private ArrayList<ClientHandler>ClientHandlers;
     AccountManager userAccounts;
 
@@ -27,6 +27,10 @@ public class Server
         return ClientHandlers;
     }
 
+    public void removeClientHandler(ClientHandler client)
+    {
+        ClientHandlers.remove(client);
+    }
 
     public void run()
     {
@@ -40,7 +44,7 @@ public class Server
             while(true)
             {
                 System.out.println("Waiting for Client Connection....");
-                clientSocket = serverSocket.accept();
+                Socket clientSocket = serverSocket.accept();
                 System.out.println("Connection accepted from: "+clientSocket);
 
                 //create a new thread to handle that client

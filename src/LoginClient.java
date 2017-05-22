@@ -34,7 +34,6 @@ public class LoginClient extends JFrame
         this.portNumber = portNumber;
         this.isRunning = true;
     }
-
     public void run()
     {
         createGUI();
@@ -94,7 +93,7 @@ public class LoginClient extends JFrame
         SouthPanel.add(buttonRegister,BorderLayout.EAST);
 
         //Make window exit application on close
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //set display size
         setSize(300,100);
@@ -123,6 +122,19 @@ public class LoginClient extends JFrame
                 passwdInput.setText("");
             }
         });
+
+        buttonRegister.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                String username = userNameInput.getText();
+                String password = passwdInput.getText();
+                String cmd = "register";
+                String line = cmd+":"+username+":"+password;
+                sendMessageToServer(line);
+                userNameInput.setText("");
+                passwdInput.setText("");
+            } });
     }
 
     private void listenToServer()
@@ -137,33 +149,44 @@ public class LoginClient extends JFrame
                     {
                         if (response.equalsIgnoreCase("true"))
                         {
-                            isRunning = false;
                             break;
                         }
+
                         else if(response.equalsIgnoreCase("false"))
+                        {
                             displayErrorMessage();
+                        }
                     }
                 }
                 catch (IOException e)
                 {
                     e.printStackTrace();
                 }
-        }
-        try {
-            connectionToServer.close();
-            writeToServer.close();
-            inputFromServer.close();
-        }
-        catch(IOException e)
-        {
-            e.printStackTrace();
-        }
-        dispose();
+                isRunning = false;
+         }
+
+            try
+            {
+                connectionToServer.close();
+                writeToServer.close();
+                inputFromServer.close();
+            }
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
+            dispose();
     }
 
     private void displayErrorMessage()
     {
-        JOptionPane.showMessageDialog (null, "Message", "Title", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog (null, "Invalid Username or Password (CASE SENSITIVE)", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    private void sendMessageToServer(String message)
+    {
+        writeToServer.println(message);
+        writeToServer.flush();
     }
 
     public static void main(String [] args)

@@ -52,9 +52,6 @@ public class ClientHandler extends Thread
 
     private void handleClientConnection()
     {
-        //Write Welcome Message to Client
-        //writeToClient.println("Welcome to the Ping Chat");
-        //writeToClient.flush();
 
         String line;
 
@@ -71,9 +68,14 @@ public class ClientHandler extends Thread
                     handle_login(tokens);
                 }
 
-                else if(command.equalsIgnoreCase("logoff"))
+                else if(command.equalsIgnoreCase("disconnect"))
                 {
-                   handle_logoff(tokens);
+                    handle_disconnect(tokens);
+                }
+
+                else if(command.equalsIgnoreCase("register"))
+                {
+                    handle_register(tokens);
                 }
 
                 else if(command.equalsIgnoreCase("msg"))
@@ -87,9 +89,6 @@ public class ClientHandler extends Thread
         {
             e.printStackTrace();
         }
-
-        System.out.println("Client has succesfully Disconnected");
-
     }
 
     private void handle_login(String [] data) throws IOException
@@ -98,8 +97,7 @@ public class ClientHandler extends Thread
         {
             User newUser = new User();
             mainServer.userAccounts.copyAccount(data[1],newUser);
-            writeToClient.println("true");
-            writeToClient.flush();
+            sendMessageToclient("true");
             broadcastToAll(newUser.getUser_name()+newUserMessage);
             ClientChatWindow chat = new ClientChatWindow(newUser,host,port);
             chat.run();
@@ -110,9 +108,20 @@ public class ClientHandler extends Thread
         }
     }
 
-    private  void handle_logoff(String [] data)
+    private void handle_disconnect(String [] data)
     {
+        mainServer.removeClientHandler(this);
+        broadcastToAll(data[1]+" has disconnected from the chat");
+    }
 
+    private void handle_register(String [] data)
+    {
+        User newUser = new User(data[1],data[2]);
+        mainServer.userAccounts.addNewUser(newUser);
+        sendMessageToclient("true");
+        broadcastToAll(newUser.getUser_name()+newUserMessage);
+        ClientChatWindow chat = new ClientChatWindow(newUser,host,port);
+        chat.run();
     }
 
     private void broadcastToAll(String message)
@@ -123,6 +132,7 @@ public class ClientHandler extends Thread
                 client.sendMessageToclient(message);
         }
     }
+
     private void handle_message(String [] data)
     {
         ArrayList<ClientHandler> clients = mainServer.getClientHandlers();
