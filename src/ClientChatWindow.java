@@ -34,6 +34,7 @@ public class ClientChatWindow extends JFrame implements Runnable
     private JButton exitButton;
     private JButton recordsButton;
     private JButton clearButton;
+    
 
     public ClientChatWindow(User user,String hostName,int port)
     {
