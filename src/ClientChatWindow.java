@@ -34,7 +34,10 @@ public class ClientChatWindow extends JFrame implements Runnable
     private JButton exitButton;
     private JButton recordsButton;
     private JButton clearButton;
-    
+    private JList onlineUsersList;
+    private DefaultListModel model;
+    private JSplitPane splitPane;
+
 
     public ClientChatWindow(User user,String hostName,int port)
     {
@@ -51,17 +54,38 @@ public class ClientChatWindow extends JFrame implements Runnable
         mainPanel.setLayout(new BorderLayout());
         getContentPane().add(mainPanel);
 
+        //Online Users Panel
+
+        onlineUsersList = new JList();
+        model = new DefaultListModel();
+        onlineUsersList.setModel(model);
+        model.addElement("GuestUser1");
+
         //North Panel
         JPanel northPanel = new JPanel(new BorderLayout());
         mainPanel.add(northPanel,BorderLayout.NORTH);
 
-        //center panel
+        //center panel FOR NOW ///////////////////////////////
+        /*
         chatArea = new JTextArea();
         chatArea.setEditable(false);
         chatArea.setLineWrap(true);
         chatArea.setWrapStyleWord(true);
         JScrollPane scrollPane = new JScrollPane(chatArea);
         mainPanel.add(scrollPane);
+        */
+        chatArea = new JTextArea();
+        chatArea.setEditable(false);
+        chatArea.setLineWrap(true);
+        chatArea.setWrapStyleWord(true);
+        JScrollPane scrollPane = new JScrollPane(chatArea);
+        splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+        splitPane.setLeftComponent(scrollPane);
+        splitPane.setRightComponent(onlineUsersList);
+        splitPane.setDividerLocation(520);
+        splitPane.setEnabled(false);
+        mainPanel.add(splitPane);
+
 
 
         //south panel
@@ -79,7 +103,7 @@ public class ClientChatWindow extends JFrame implements Runnable
        // buttonPanel.add(exitButton,BorderLayout.EAST);
 
         setTitle("Ping Chat");
-        //setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);    ////KEEEP THIS
+        //setDefaultCloseOperation(EXIT_ON_CLOSE);    ////KEEEP THIS
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);   //This was added after
         setSize(700,500);
         setLocationRelativeTo(null);
