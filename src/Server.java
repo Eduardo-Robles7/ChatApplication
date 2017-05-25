@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -13,6 +14,7 @@ public class Server
     private ServerSocket serverSocket;
     //private Socket clientSocket;
     private ArrayList<ClientHandler>ClientHandlers;
+    private DefaultListModel model;
     AccountManager userAccounts;
 
     public Server(int port)
@@ -20,6 +22,7 @@ public class Server
         this.port = port;
         this.ClientHandlers = new ArrayList<>();
         this.userAccounts = new AccountManager();
+        this.model = new DefaultListModel();
     }
 
     public ArrayList<ClientHandler> getClientHandlers()
@@ -31,6 +34,22 @@ public class Server
     {
         ClientHandlers.remove(client);
     }
+
+    public DefaultListModel getOnlineUsersList()
+    {
+        return model;
+    }
+
+    public void addOnlineUserToModel(String user_name)
+    {
+       this.model.addElement(user_name);
+    }
+
+    public void removeOnlineUserFromModel(String user_name)
+    {
+       this.model.removeElement(user_name);
+    }
+
 
     public void run()
     {

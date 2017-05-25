@@ -2,6 +2,7 @@
  * Created by eduardorobles on 5/13/17.
  */
 import javax.imageio.IIOException;
+import javax.swing.*;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -14,9 +15,8 @@ public class ClientHandler extends Thread
     private PrintWriter writeToClient;
     private BufferedReader inputFromtClient;
     private Server mainServer;
-    String host = "localhost";
-    int port = 4444;
-    private String newUserMessage = " has connected to the chat\n";
+    private  String host = "localhost";
+    private int port = 4444;
 
 
     public ClientHandler(Server mainServer,Socket clientSocket)
@@ -98,8 +98,10 @@ public class ClientHandler extends Thread
             User newUser = new User();
             mainServer.userAccounts.copyAccount(data[1],newUser);
             sendMessageToclient("true");
-            broadcastToAll(newUser.getUser_name()+newUserMessage);
-            ClientChatWindow chat = new ClientChatWindow(newUser,host,port);
+            broadcastToAll(data[0]+":"+newUser.getUser_name());
+            //model.addElement(newUser.getUser_name());  ///////////////////////////This is a new line (maybe keep)?
+            mainServer.addOnlineUserToModel(newUser.getUser_name());
+            ClientChatWindow chat = new ClientChatWindow(newUser,host,port,mainServer.getOnlineUsersList());
             chat.run();
         }
         else
@@ -111,7 +113,8 @@ public class ClientHandler extends Thread
     private void handle_disconnect(String [] data)
     {
         mainServer.removeClientHandler(this);
-        broadcastToAll(data[1]+" has disconnected from the chat");
+        mainServer.removeOnlineUserFromModel(data[1]);
+        broadcastToAll(data[0]+":"+data[1]);
     }
 
     private void handle_register(String [] data)
@@ -119,8 +122,9 @@ public class ClientHandler extends Thread
         User newUser = new User(data[1],data[2]);
         mainServer.userAccounts.addNewUser(newUser);
         sendMessageToclient("true");
-        broadcastToAll(newUser.getUser_name()+newUserMessage);
-        ClientChatWindow chat = new ClientChatWindow(newUser,host,port);
+        broadcastToAll("login"+":"+newUser.getUser_name());
+        mainServer.addOnlineUserToModel(newUser.getUser_name());
+        ClientChatWindow chat = new ClientChatWindow(newUser,host,port,mainServer.getOnlineUsersList());
         chat.run();
     }
 
@@ -140,7 +144,7 @@ public class ClientHandler extends Thread
         {
             if(client != this)
             {
-                client.sendMessageToclient(data[1]+":"+data[2]);
+                client.sendMessageToclient(data[0]+":"+data[1]+":"+data[2]);
             }
         }
     }

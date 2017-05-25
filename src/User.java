@@ -5,6 +5,42 @@ import java.util.Scanner;
 /**
  * Created by eduardorobles on 5/13/17.
  */
+
+class ChatLog
+{
+    private String file_name;
+
+    public ChatLog()
+    {
+    }
+
+    public ChatLog(String file_name)
+    {
+        this.file_name = file_name;
+    }
+
+    public void displayChatLog() throws FileNotFoundException
+    {
+        displayChatLog(file_name);
+    }
+    private  void displayChatLog(String file_name) throws FileNotFoundException
+    {
+
+        File file = new File(file_name);
+        Scanner fsc = new Scanner(file);
+        while(fsc.hasNextLine())
+        {
+            String line = fsc.nextLine();
+            String tokens[] = line.split("\\|");
+            User newUser = new User(tokens[0],tokens[1]);
+            //add(newUser);
+        }
+        fsc.close();
+    }
+
+
+}
+
 public class User
 {
     private String user_name;

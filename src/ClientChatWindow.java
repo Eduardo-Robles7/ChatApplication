@@ -39,13 +39,17 @@ public class ClientChatWindow extends JFrame implements Runnable
     private JSplitPane splitPane;
 
 
-    public ClientChatWindow(User user,String hostName,int port)
+    public ClientChatWindow(User user,String hostName,int port,DefaultListModel model)
     {
         this.hostName = hostName;
         this.port = port;
         this.user = new User();
         this.user.copy(user);
         this.currentDate = new Date();
+        onlineUsersList = new JList();
+        this.model = new DefaultListModel();
+        this.model = model;
+        onlineUsersList.setModel(this.model);
     }
 
     private void create_GUI()
@@ -56,10 +60,10 @@ public class ClientChatWindow extends JFrame implements Runnable
 
         //Online Users Panel
 
-        onlineUsersList = new JList();
-        model = new DefaultListModel();
-        onlineUsersList.setModel(model);
-        model.addElement("GuestUser1");
+        //onlineUsersList = new JList();
+        //model = new DefaultListModel();
+        //onlineUsersList.setModel(model);
+        //model.addElement("GuestUser1");
 
         //North Panel
         JPanel northPanel = new JPanel(new BorderLayout());
@@ -81,7 +85,8 @@ public class ClientChatWindow extends JFrame implements Runnable
         JScrollPane scrollPane = new JScrollPane(chatArea);
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
         splitPane.setLeftComponent(scrollPane);
-        splitPane.setRightComponent(onlineUsersList);
+        JScrollPane sp = new JScrollPane(onlineUsersList);
+        splitPane.setRightComponent(sp);
         splitPane.setDividerLocation(520);
         splitPane.setEnabled(false);
         mainPanel.add(splitPane);
@@ -155,6 +160,13 @@ public class ClientChatWindow extends JFrame implements Runnable
                 userInput.setText("");
             }
         });
+
+        recordsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               model.addElement("Pablo");
+            }
+        });
     }
 
     private void setup_disconnect()
@@ -178,7 +190,23 @@ public class ClientChatWindow extends JFrame implements Runnable
             {
                 while ((line = inputFromServer.readLine()) != null)
                 {
-                    sendtoChatArea(line);
+                    String data [] = line.split(":");
+                    String cmd = data[0];
+
+                    if(cmd.equalsIgnoreCase("msg"))
+                    {
+                        handle_message(data);
+                    }
+
+                    else if(cmd.equalsIgnoreCase("login"))
+                    {
+                        handle_login(data);
+                    }
+
+                    else if(cmd.equalsIgnoreCase("disconnect"))
+                    {
+                        handle_disconnect(data);
+                    }
                 }
             }
             catch(IOException e)
@@ -187,6 +215,22 @@ public class ClientChatWindow extends JFrame implements Runnable
             }
     }
 
+    private void handle_message(String [] data)
+    {
+        sendtoChatArea(data[1]+":"+data[2]);
+    }
+
+    private void handle_login(String [] data)
+    {
+       sendtoChatArea(data[1]+" has connected to the chat");
+       //model.addElement(data[1]);
+    }
+
+    private void handle_disconnect(String [] data)
+    {
+        sendtoChatArea(data[1]+ " has disconnected from the chat");
+        //model.removeElement(data[1]);
+    }
 
     private void sendtoChatArea(String message)
     {
@@ -217,7 +261,7 @@ public class ClientChatWindow extends JFrame implements Runnable
         String host = "localhost";
         int port = 4444;
         User newUser = new User("Asds","Asdas");
-        ClientChatWindow chat = new ClientChatWindow(newUser,host,port);
-        chat.run();
+        //ClientChatWindow chat = new ClientChatWindow(newUser,host,port);
+        //chat.run();
     }
 }
