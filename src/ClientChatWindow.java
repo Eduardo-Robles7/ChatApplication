@@ -9,6 +9,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Date;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
 
 /**
  * Created by eduardorobles on 5/13/17.
@@ -43,8 +45,8 @@ public class ClientChatWindow extends JFrame implements Runnable
     {
         this.hostName = hostName;
         this.port = port;
-        this.user = new User();
-        this.user.copy(user);
+        this.user = new User(user);
+        //this.user.copy(user);       ///Original Before adding ChatLog
         this.currentDate = new Date();
         onlineUsersList = new JList();
         this.model = new DefaultListModel();
@@ -145,10 +147,14 @@ public class ClientChatWindow extends JFrame implements Runnable
     {
         userInput.addActionListener(new ActionListener()
         {
+
             public void actionPerformed(ActionEvent e)
             {
                 String message = user.getUser_name()+":"+userInput.getText();
                 sendtoChatArea(message);
+                //String timeStamp = new SimpleDateFormat("yyyy-MMdd-HHmmss").format(Calendar.getInstance().getTime());
+                String timeStamp = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
+                user.writeToChatLog(message+"\n"+"("+timeStamp+")"+"\n");
                 sendMessageToServer("msg:"+message);
             }
         });
@@ -164,7 +170,8 @@ public class ClientChatWindow extends JFrame implements Runnable
         recordsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               model.addElement("Pablo");
+               //model.addElement("Pablo");
+                user.display_chatlog();
             }
         });
     }

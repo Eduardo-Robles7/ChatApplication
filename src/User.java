@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -9,18 +11,45 @@ import java.util.Scanner;
 class ChatLog
 {
     private String file_name;
+    private JFrame frame;
+    private JPanel mainPanel;
+    private JTextArea chatArea;
 
     public ChatLog()
     {
+        this.file_name = null;
+        //buildGUI();
     }
 
     public ChatLog(String file_name)
     {
         this.file_name = file_name;
+        //buildGUI();
+    }
+
+    private void buildGUI()
+    {
+        frame = new JFrame();
+        mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout());
+        frame.getContentPane().add(mainPanel);
+        chatArea = new JTextArea();
+        chatArea.setEditable(false);
+        chatArea.setLineWrap(true);
+        chatArea.setWrapStyleWord(true);
+        JScrollPane scrollPane = new JScrollPane(chatArea);
+        mainPanel.add(scrollPane);
+        frame.setTitle("Chat Records");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);    ////KEEEP THIS
+        frame.setSize(700,500);
+        //frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+        frame.setVisible(true);
     }
 
     public void displayChatLog() throws FileNotFoundException
     {
+        buildGUI();
         displayChatLog(file_name);
     }
     private  void displayChatLog(String file_name) throws FileNotFoundException
@@ -31,36 +60,62 @@ class ChatLog
         while(fsc.hasNextLine())
         {
             String line = fsc.nextLine();
-            String tokens[] = line.split("\\|");
-            User newUser = new User(tokens[0],tokens[1]);
-            //add(newUser);
+            chatArea.append(line+"\n");
         }
         fsc.close();
     }
 
+    public void writeToChatLog(String message)
+    {
+        File file = new File(file_name);
+        try
+        {
+            FileWriter fileWriter = new FileWriter(file,true);
+            BufferedWriter buffer = new BufferedWriter(fileWriter);
+            PrintWriter printWriter = new PrintWriter(buffer);
 
+            if(!file.exists())
+            {
+                //create a new file
+                file.createNewFile();
+            }
+
+            printWriter.println(message);
+            printWriter.close();
+        }
+
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+
+    }
 }
 
 public class User
 {
     private String user_name;
     private String password;
+    private ChatLog chatLog;
 
     public User()
     {
         this.user_name = null;
         this.password = null;
+        this.chatLog = null;
     }
     public User(String user_name, String password)
     {
         this.user_name = user_name;
         this.password  = password;
+        this.chatLog = new ChatLog(user_name+".txt");
     }
 
     public User(User otherUser)
     {
         this.user_name = otherUser.user_name;
         this.password = otherUser.password;
+        this.chatLog = new ChatLog("records/"+user_name+".txt");
     }
 
     public void copy(User otherUser)
@@ -87,6 +142,23 @@ public class User
     public void setPassword(String password)
     {
         this.password = password;
+    }
+
+    public void display_chatlog()
+    {
+        try
+        {
+            chatLog.displayChatLog();
+        }
+        catch(FileNotFoundException e)
+        {
+           e.printStackTrace();
+        }
+    }
+
+    public void writeToChatLog(String message)
+    {
+      chatLog.writeToChatLog(message);
     }
 
     public void display()
