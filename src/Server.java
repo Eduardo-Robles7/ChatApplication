@@ -15,6 +15,8 @@ public class Server
     //private Socket clientSocket;
     private ArrayList<ClientHandler>ClientHandlers;
     private DefaultListModel model;
+    private ArrayList<ClientChatWindow> clientChats;
+
     AccountManager userAccounts;
 
     public Server(int port)
@@ -23,6 +25,7 @@ public class Server
         this.ClientHandlers = new ArrayList<>();
         this.userAccounts = new AccountManager();
         this.model = new DefaultListModel();
+        this.clientChats = new ArrayList<>();
     }
 
     public ArrayList<ClientHandler> getClientHandlers()
@@ -37,7 +40,7 @@ public class Server
 
     public DefaultListModel getOnlineUsersList()
     {
-        return model;
+        return this.model;
     }
 
     public void addOnlineUserToModel(String user_name)
@@ -50,6 +53,30 @@ public class Server
        this.model.removeElement(user_name);
     }
 
+    //This is new StUFFF remove if doesnt work 05/31/2017
+    public ArrayList<ClientChatWindow> getClientChats()
+    {
+        return clientChats;
+    }
+
+    public void addClientChat(ClientChatWindow client)
+    {
+        clientChats.add(client);
+    }
+
+    public void removeClientChat(ClientChatWindow client)
+    {
+        clientChats.remove(client);
+    }
+
+    public void sendPrivateChatToUser(String recipient,String sender,String message)
+    {
+        for(ClientChatWindow client: clientChats)
+        {
+            if(client.getUserName().equals(recipient))
+                client.sendToChatAreaPrivate(sender+":"+message);
+        }
+    }
 
     public void run()
     {

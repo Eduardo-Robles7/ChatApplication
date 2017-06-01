@@ -18,7 +18,6 @@ public class ClientHandler extends Thread
     private  String host = "localhost";
     private int port = 4444;
 
-
     public ClientHandler(Server mainServer,Socket clientSocket)
     {
         this.mainServer = mainServer;
@@ -82,6 +81,12 @@ public class ClientHandler extends Thread
                 {
                     handle_message(tokens);
                 }
+
+                else if(command.equalsIgnoreCase("private"))
+                {
+                    handle_private_message(tokens);
+                }
+
             }
         }
 
@@ -101,7 +106,7 @@ public class ClientHandler extends Thread
             broadcastToAll(data[0]+":"+newUser.getUser_name());
             //model.addElement(newUser.getUser_name());  ///////////////////////////This is a new line (maybe keep)?
             mainServer.addOnlineUserToModel(newUser.getUser_name());
-            ClientChatWindow chat = new ClientChatWindow(newUser,host,port,mainServer.getOnlineUsersList());
+            ClientChatWindow chat = new ClientChatWindow(newUser,host,port,mainServer.getOnlineUsersList(),mainServer);
             chat.run();
         }
         else
@@ -124,7 +129,7 @@ public class ClientHandler extends Thread
         sendMessageToclient("true");
         broadcastToAll("login"+":"+newUser.getUser_name());
         mainServer.addOnlineUserToModel(newUser.getUser_name());
-        ClientChatWindow chat = new ClientChatWindow(newUser,host,port,mainServer.getOnlineUsersList());
+        ClientChatWindow chat = new ClientChatWindow(newUser,host,port,mainServer.getOnlineUsersList(),mainServer);
         chat.run();
     }
 
@@ -149,6 +154,10 @@ public class ClientHandler extends Thread
         }
     }
 
+    private void handle_private_message(String [] data)
+    {
+        mainServer.sendPrivateChatToUser(data[1],data[2],data[3]);
+    }
     private void sendMessageToclient(String message)
     {
         writeToClient.println(message);

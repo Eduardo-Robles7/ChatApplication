@@ -25,6 +25,7 @@ public class ClientChatWindow extends JFrame implements Runnable
     private BufferedReader inputFromKeyBoard;
     private User user;
     private Date currentDate;
+    private Server mainServer;
 
 
     //GUI Components
@@ -41,7 +42,7 @@ public class ClientChatWindow extends JFrame implements Runnable
     private JSplitPane splitPane;
 
 
-    public ClientChatWindow(User user,String hostName,int port,DefaultListModel model)
+    public ClientChatWindow(User user,String hostName,int port,DefaultListModel model,Server mainServer)
     {
         this.hostName = hostName;
         this.port = port;
@@ -52,6 +53,8 @@ public class ClientChatWindow extends JFrame implements Runnable
         this.model = new DefaultListModel();
         this.model = model;
         onlineUsersList.setModel(this.model);
+        this.mainServer = mainServer;
+        this.mainServer.addClientChat(this);
     }
 
     private void create_GUI()
@@ -126,6 +129,7 @@ public class ClientChatWindow extends JFrame implements Runnable
         setup_buttons();
         setup_disconnect();
         listenToServer();
+        mainServer.removeClientChat(this);
     }
 
     private void setup_streams()
@@ -155,8 +159,17 @@ public class ClientChatWindow extends JFrame implements Runnable
                 //String timeStamp = new SimpleDateFormat("yyyy-MMdd-HHmmss").format(Calendar.getInstance().getTime());
                 String timeStamp = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
                 user.writeToChatLog(message+"\n"+"("+timeStamp+")"+"\n");
-                sendMessageToServer("msg:"+message);
-            }
+                if(onlineUsersList.isSelectionEmpty())
+                {
+                    sendMessageToServer("msg:"+message);
+                }
+                else
+                {
+                    String recipient = onlineUsersList.getSelectedValue().toString();
+                    sendMessageToServer("private"+":"+recipient+":"+message);
+                    onlineUsersList.clearSelection();
+                }
+             }
         });
 
         clearButton.addActionListener(new ActionListener()
@@ -248,6 +261,15 @@ public class ClientChatWindow extends JFrame implements Runnable
         }
     }
 
+    public void sendToChatAreaPrivate(String message)
+    {
+        if (message != null)
+        {
+            chatArea.append(message+"\n");
+            chatArea.setCaretPosition(chatArea.getDocument().getLength());
+        }
+    }
+
     private void sendMessageToServer(String message)
     {
         writeToServer.println(message);
@@ -261,7 +283,10 @@ public class ClientChatWindow extends JFrame implements Runnable
        sendtoChatArea(user.getUser_name()+" connected to Chat\n");
     }
 
-
+    public String getUserName()
+    {
+        return user.getUser_name();
+    }
 
     public static void main(String [] args)
     {
