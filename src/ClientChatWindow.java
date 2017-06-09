@@ -119,7 +119,7 @@ public class ClientChatWindow extends JFrame implements Runnable
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);   //This was added after
         setSize(680,370);
         setLocationRelativeTo(null);
-        setResizable(true);
+        setResizable(false);
         setVisible(true);
     }
 
